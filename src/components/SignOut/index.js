@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FirebaseContext } from '../Firebase/context';
 
-const SignOut = () => {
+const SignOutButton = () => {
+    const firebaseContext = useContext(FirebaseContext);
+
     return (
-        <div>
-            <h1>Sign Out</h1>
-        </div>
+        <button 
+            type="button" 
+            onClick={firebaseContext.doSignOut}
+        >
+            Sign Out
+        </button>
     )
 };
 
-export default SignOut;
+export default SignOutButton;
