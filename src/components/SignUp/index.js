@@ -38,7 +38,14 @@ const SignUpFormBase = props => {
         event.preventDefault();
 
         try {
-            await firebaseContext.doCreateUserWithEmailAndPassword(email, passwordOne);
+            const authUser = await firebaseContext.doCreateUserWithEmailAndPassword(email, passwordOne);
+            
+            await firebaseContext.user(authUser.user.uid)
+                .set({
+                    username,
+                    email
+                });
+            
             setUser(initialState);
             props.history.push(ROUTES.HOME);
         } catch (error) {
